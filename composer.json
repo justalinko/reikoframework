@@ -1,0 +1,19 @@
+{
+    "name": "justalinko/reikoframework",
+    "description": "The PHP Web Framework for simplicity",
+    "type": "framework",
+    "require-dev": {
+        "symfony/console": "^5.3",
+        "fakerphp/faker": "^1.16"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "alinko",
+            "email": "alinkokomansuby@gmail.com"
+        }
+    ],
+    "require": {
+        "latte/latte": "^2.10"
+    }
+}
