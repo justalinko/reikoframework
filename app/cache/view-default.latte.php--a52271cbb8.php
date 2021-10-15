@@ -19,11 +19,38 @@ final class Templatea52271cbb8 extends Latte\Runtime\Template
 </head>
 <body>
     <center>
-        <h1>Welcome</h1>
+';
+		if ($items) /* line 11 */ {
+			echo '        <ul>
+';
+			$iterations = 0;
+			foreach ($items as $item) /* line 12 */ {
+				echo '            <li>';
+				echo LR\Filters::escapeHtmlText(($this->filters->capitalize)($item)) /* line 12 */;
+				echo '</li>
+';
+				$iterations++;
+			}
+			echo '        </ul>
+';
+		}
+		echo '        <h1>Welcome</h1>
     </center>
 </body>
 </html>';
 		return get_defined_vars();
+	}
+
+
+	public function prepare(): void
+	{
+		extract($this->params);
+		if (!$this->getReferringTemplate() || $this->getReferenceType() === "extends") {
+			foreach (array_intersect_key(['item' => '12'], $this->params) as $ʟ_v => $ʟ_l) {
+				trigger_error("Variable \$$ʟ_v overwritten in foreach on line $ʟ_l");
+			}
+		}
+		
 	}
 
 }

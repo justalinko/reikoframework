@@ -15,6 +15,7 @@
     ],
     "require": {
         "latte/latte": "^2.10",
-        "bramus/router": "^1.6"
+        "bramus/router": "^1.6",
+        "vlucas/phpdotenv": "^5.3"
     }
 }
