@@ -20,6 +20,9 @@ class Bootstrap
     public $route;
     public function __construct()
     {
+        $dotenv = Dotenv\Dotenv::createImmutable(ROOT_PATH);
+        $dotenv->load();
+        
         $this->load_library();
         $this->handler = new Handler;
     }

@@ -7,7 +7,7 @@ class IndexHandler extends Handler{
 
     public function index()
     {
-        $data['items'] = ['Home' , 'Docs' , 'Contribute' ,'Donate'];
+        $data['items'] = ['Home' , 'Docs' , 'Contribute' ,'Donate' ];
         $this->view('default',$data);
     }
 }
