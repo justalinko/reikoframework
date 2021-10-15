@@ -35,6 +35,18 @@ final class Templatea52271cbb8 extends Latte\Runtime\Template
 ';
 		}
 		echo '        <h1>Welcome</h1>
+        ';
+		echo input_group([
+			'username' => ['type' => 'text',
+				'value'=> '',
+				'attr' => ['id' => 'username']
+			],
+			'password' => ['type' => 'password',
+				'value'=> '',
+				'attr' => ['id' => 'password']
+			]
+		]) /* line 15 */;
+		echo '
     </center>
 </body>
 </html>';

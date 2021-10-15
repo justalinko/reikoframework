@@ -12,6 +12,7 @@
             <li n:foreach="$items as $item">{$item|capitalize}</li>
         </ul>
         <h1>Welcome</h1>
+    
     </center>
 </body>
 </html>
