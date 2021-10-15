@@ -5,6 +5,7 @@ require 'dev/loadCommand.php';
 
 use Symfony\Component\Console\Application;
 use Dev\Command\Init;
+use Dev\Command\MakeHandler;
 use Dev\Command\Run;
 
 Class ReikoCLI{
@@ -44,13 +45,13 @@ Class ReikoCLI{
      -----------------------------------
      | $this->CliVer - Reiko CLI Tools
      -----------------------------------
-     ";
+\n\n";
     }
 }
 
 $cli = new ReikoCLI;
 
 $cli->banner();
-$cli->register_cli([Run::class , Init::class]);
+$cli->register_cli([Run::class , Init::class , MakeHandler::class]);
 
 
