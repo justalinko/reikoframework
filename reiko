@@ -3,6 +3,7 @@
 require 'vendor/autoload.php';
 require 'dev/loadCommand.php';
 
+use Dev\Command\ClearCache;
 use Symfony\Component\Console\Application;
 use Dev\Command\Init;
 use Dev\Command\MakeHandler;
@@ -49,9 +50,16 @@ Class ReikoCLI{
     }
 }
 
-$cli = new ReikoCLI;
+/** register the command */
+$command_lists = [Run::class,
+                 Init::class,
+                 MakeHandler::class,
+                 ClearCache::class];
 
+
+/** run the command */
+$cli = new ReikoCLI;
 $cli->banner();
-$cli->register_cli([Run::class , Init::class , MakeHandler::class]);
+$cli->register_cli($command_lists);
 
 

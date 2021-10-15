@@ -37,7 +37,7 @@ namespace Reiko\App;
  * @package ReiKo Framework
  *
  * @author alinko <alinkokomansuby@gmail.com>
- * @author ReiYan <hariyantoriyan.hr@gmail.com>
+ * @author ReiYan <hariyantoreiyan.hr@gmail>
  * @copyright (c) 2021 
  * 
  * @license MIT 
