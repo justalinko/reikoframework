@@ -22,6 +22,13 @@ class Bootstrap
     {
         $dotenv = Dotenv\Dotenv::createImmutable(ROOT_PATH);
         $dotenv->load();
+        $dbhost = $_ENV['DB_HOSTNAME'];
+        $dbuser = $_ENV['DB_USERNAME'];
+        $dbpass = $_ENV['DB_PASSWORD'];
+        $dbname = $_ENV['DB_DATABASE'];
+        ORM::configure("mysql:host=$dbhost;dbname;$dbname");
+        ORM::configure("username",$dbuser);
+        ORM::configure("password",$dbpass);
         
         $this->load_library();
         $this->handler = new Handler;
