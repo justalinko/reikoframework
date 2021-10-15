@@ -12,10 +12,41 @@
  * 
  */
 
- Class Bootstrap{
+use Reiko\Libraries\Handler;
 
+class Bootstrap
+{
+    public $route;
+    public function __construct()
+    {
+        $this->load_library();
+        $this->handler = new Handler;
+    }
+    public function load_library()
+    {
+
+        spl_autoload_register(function ($class) {
+            $ex = explode("\\", $class);
+            $class = end($ex);
+            if (file_exists(LIB_PATH . $class . '.php')) {
+                require_once LIB_PATH . $class . '.php';
+            }
+        });
+    }
+    public function load_configFiles()
+    {
+        $dir = CONFIG_PATH;
+        $files = glob($dir . '/*.php');
+
+        foreach ($files as $file) {
+            require($file);
+        }
+    }
     public function run()
     {
-        echo "hello world";
+        $this->handler->run();
+
+        $this->load_configFiles();
+
     }
- }
+}

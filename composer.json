@@ -14,6 +14,7 @@
         }
     ],
     "require": {
-        "latte/latte": "^2.10"
+        "latte/latte": "^2.10",
+        "bramus/router": "^1.6"
     }
 }
