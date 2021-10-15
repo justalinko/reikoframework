@@ -5,7 +5,7 @@
  * @package ReiKo Framework
  *
  * @author alinko <alinkokomansuby@gmail.com>
- * @author ReiYan <hariyantoriyan.hr@gmail>
+ * @author ReiYan <hariyantoriyan.hr@gmail.com>
  * @copyright (c) 2021 
  * 
  * @license MIT 
