@@ -1,7 +1,7 @@
 {
     "name": "justalinko/reikoframework",
     "description": "The PHP Web Framework for simplicity",
-    "type": "framework",
+    "type": "project",
     "require-dev": {
         "symfony/console": "^5.3",
         "fakerphp/faker": "^1.16"
