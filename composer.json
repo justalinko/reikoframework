@@ -2,6 +2,8 @@
     "name": "justalinko/reikoframework",
     "description": "The PHP Web Framework for simplicity",
     "type": "project",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require-dev": {
         "symfony/console": "^5.3",
         "fakerphp/faker": "^1.16"
@@ -11,6 +13,10 @@
         {
             "name": "alinko",
             "email": "alinkokomansuby@gmail.com"
+        },
+        {
+            "name": "reiyan",
+            "email": "hariyantoreiyan.hr@gmail.com"
         }
     ],
     "require": {
