@@ -1,3 +1,24 @@
+<?php
+
+use Latte\Runtime as LR;
+
+/** source: /mnt/c/Projects/PHP/reikoframework/app//view/default.latte.php */
+final class Templated92ade53e0 extends Latte\Runtime\Template
+{
+
+	public function main(): array
+	{
+		extract($this->params);
+		echo '<?php
+$logoASCII = "
+                   _ __       
+        ________  (_) /______ 
+       / ___/ _ \\/ / //_/ __ \\
+      / /  /  __/ / ,< / /_/ /
+     /_/   \\___/_/_/|_|\\____/ 
+     ";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,4 +71,8 @@
         </div>
     </div>
 </body>
-</html>
+</html>';
+		return get_defined_vars();
+	}
+
+}
