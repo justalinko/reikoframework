@@ -15,6 +15,7 @@ Class ReikoCLI{
     private $CliVer;
     public function __construct()
     {
+        @chdir(__DIR__);
         $this->CliVer = '0.0.1';
         $this->cli = new Application('REIKO CLI TOOLS' , $this->CliVer);
     }
