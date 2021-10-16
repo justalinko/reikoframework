@@ -20,7 +20,7 @@ class Init extends Command
 
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
       $base = $input->getOption('base-url');
       $db = $input->getOption('database');
