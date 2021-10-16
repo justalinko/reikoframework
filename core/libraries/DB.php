@@ -148,10 +148,10 @@ class DB
      * @return array
      */
 
-     public function getWhere($condition = [])
-     {
-         return $this->select('*')->where($condition)->get();
-     }
+    public function getWhere($condition = [])
+    {
+        return $this->select('*')->where($condition)->get();
+    }
 
     /**
      * @method find
@@ -280,19 +280,19 @@ class DB
      */
     public function update($table = null)
     {
-        if($table != null){
-        $this->table($table);
+        if ($table != null) {
+            $this->table($table);
         }
 
         $this->updateQueries = "UPDATE {$this->table} ";
-        $this->updateQueries.= $this->sql;
+        $this->updateQueries .= $this->sql;
         return $this->query($this->updateQueries);
     }
     public function set($arr = [])
     {
         $c = count($arr);
         $this->setUpdate = "";
-     //   $this->sql = $this->sql;
+        //   $this->sql = $this->sql;
         if ($c > 0) {
             $this->sql .= " SET ";
             $n = 1;
@@ -316,10 +316,9 @@ class DB
      * $db->save(['username' => 'admin' , 'password' => '123456'] , 'users');
      */
 
-    public function save($data = [],$table = null)
+    public function save($data = [], $table = null)
     {
-        if($table != null)
-        {
+        if ($table != null) {
             $this->table($table);
         }
 
@@ -327,9 +326,9 @@ class DB
         $c = count($data);
 
         if ($c > 0) {
-        
+
             $n = 1;
-            $this->sql.="(";
+            $this->sql .= "(";
             foreach ($data as $key => $val) {
                 $this->sql .= "`{$key}`";
                 if ($n++ != $c) {
@@ -337,9 +336,9 @@ class DB
                 }
                 $this->sql .= "";
             }
-            $this->sql.= ")  ";
-            $this->sql.= " VALUES(";
-            $n2=1;
+            $this->sql .= ")  ";
+            $this->sql .= " VALUES(";
+            $n2 = 1;
             foreach ($data as $key => $val) {
                 $this->sql .= "'{$val}'";
                 if ($n2++ != $c) {
@@ -347,7 +346,7 @@ class DB
                 }
                 $this->sql .= "";
             }
-            $this->sql.= ") ";
+            $this->sql .= ") ";
         }
 
         return $this->query($this->sql);
@@ -355,9 +354,9 @@ class DB
     /**
      * @method insert alias of save
      */
-    public function insert($data = [] , $table = null)
+    public function insert($data = [], $table = null)
     {
-        return $this->save($data,$table);
+        return $this->save($data, $table);
     }
 
 
@@ -372,16 +371,14 @@ class DB
      * $db->table('users)->where(['id' => 1])->delete();
      * 
      */
-    public function delete($table = null , $id = [])
+    public function delete($table = null, $id = [])
     {
-        if($table != null)
-        {
+        if ($table != null) {
             $this->table($table);
         }
         $this->deleteQueries = "DELETE FROM {$this->table} ";
-        if(count($id) > 0)
-        {
-            $this->deleteQueries .=" WHERE ";
+        if (count($id) > 0) {
+            $this->deleteQueries .= " WHERE ";
             foreach ($id as $key => $val) {
                 $this->deleteQueries .= " {$key}='{$val}' ";
                 if ($n++ != $c) {
@@ -389,9 +386,8 @@ class DB
                 }
                 $this->deleteQueries .= "";
             }
-
-        }else{
-         $this->deleteQueries.= $this->sql;
+        } else {
+            $this->deleteQueries .= $this->sql;
         }
 
         echo $this->deleteQueries;
