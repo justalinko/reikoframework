@@ -16,18 +16,44 @@ namespace Reiko\Libraries;
 
 class Handler{
    
+    private $latte;
+    /** handler construct
+     *  You can call functions or library here.
+     */
+    public function __construct()
+    {
+        /** load some functions */
+        $this->use_fun('common');
+        $this->use_fun('form');
+        
+        /** load latte template engine */
+        $this->latte = new \Latte\Engine;
+        $this->latte->setTempDirectory(APP_PATH . 'cache');
+       
+
+    }
+
     public function run(){
     
         $this->load_appHandler();    
     }
     public function view($view , $params = [])
     {
-        $latte = new \Latte\Engine;
-        $latte->setTempDirectory(APP_PATH . 'cache'); 
+        
         if(file_exists(VIEW_PATH . $view . '.latte.php')){
-            return $latte->render(VIEW_PATH . $view . '.latte.php' , $params);
+            return $this->latte->render(VIEW_PATH . $view . '.latte.php' , $params);
         }else{
             exit(" Template not exists !");
+        }
+    }
+    public function use_fun($functions)
+    {
+        if(file_exists(FUN_PATH . $functions .'.php'))
+        {
+            require_once FUN_PATH . $functions .'.php';
+        }else{
+
+            exit('FUNCTIONS : '.$functions . ' Doesn\'t exists !');
         }
     }
     public function load_appHandler(){

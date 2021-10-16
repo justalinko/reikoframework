@@ -11,6 +11,8 @@
  * @license MIT 
  * 
  */
+session_start();
+
  require_once '../vendor/autoload.php';
  require_once '../core/functions/constants.php';
  require_once '../core/Bootstrap.php';
