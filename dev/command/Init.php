@@ -24,7 +24,8 @@ class Init extends Command
     {
       $base = $input->getOption('base-url');
       $db = $input->getOption('database');
-      $this->configurenv($base,$db);
+      $this->configurenv($base,$db,$output);
+      $output->writeln("<info> Successfully </info>");
 
       return Command::SUCCESS;
       
@@ -33,17 +34,25 @@ class Init extends Command
     {
         return preg_replace("/".$env."?=?(.*)?/","{$env} = {$change}" , $content);
     }
-    protected function configurenv($baseurl,$db)
+    protected function configurenv($baseurl,$db,$output)
     {
         if($baseurl == null){ $baseurl = "http://localhost:8888"; }
         if($db == null ){ $db = "localhost,root,root,reikodb";}
-
-        if(file_exists('env.example'))
+        
+        $output->writeln("<comment> Copying .env.example to .env .... </comment> <info>OK</info>");
+        if(file_exists('.env.example'))
         {
-            @copy('env.example' , '.env');
+            @unlink('.env');
+            @copy('.env.example' , '.env');
         }
+        $output->writeln("\n<comment>Configure $baseurl and $db ... </comment> <info>OK</info>");
         $cfg = file_get_contents('.env');
         $newconfig = $this->set('APP_BASEURL' , $baseurl,$cfg);
+        $dbx = explode(",",$db);
+        $newconfig.= $this->set('DB_HOSTNAME',$dbx[0],$cfg);
+        $newconfig.= $this->set('DB_USERNAME',$dbx[1],$cfg);
+        $newconfig.= $this->set('DB_PASSWORD',$dbx[2],$cfg);
+        $newconfig.= $this->set('DB_DATABASE',$dbx[3],$cfg);
     
         file_put_contents('.env',$newconfig);
         
