@@ -28,7 +28,7 @@ class Bootstrap
         $dbuser = $_ENV['DB_USERNAME'];
         $dbpass = $_ENV['DB_PASSWORD'];
         $dbname = $_ENV['DB_DATABASE'];
-        ORM::configure("mysql:host=$dbhost;dbname;$dbname");
+        ORM::configure("mysql:host=$dbhost;dbname=$dbname");
         ORM::configure("username",$dbuser);
         ORM::configure("password",$dbpass);
 
