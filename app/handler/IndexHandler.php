@@ -3,7 +3,7 @@
 namespace Reiko\App;
 
 use Reiko\Libraries\Handler;
-use ORM;
+use Reiko\Libraries\DB;
 
 class IndexHandler extends Handler
 {
@@ -15,7 +15,7 @@ class IndexHandler extends Handler
                       'Contribute' => 'https://github.com/justalinko/reikoframework',
                        'Donate' => 'https://github.com/justalinko/reikoframework'];
     $data['title'] = 'Reiko Framework';
-    //  dd($data);
     $this->view('default', $data);
   }
+ 
 }

@@ -49,10 +49,10 @@ class Init extends Command
         $cfg = file_get_contents('.env');
         $newconfig = $this->set('APP_BASEURL' , $baseurl,$cfg);
         $dbx = explode(",",$db);
-        $newconfig.= $this->set('DB_HOSTNAME',$dbx[0],$cfg);
-        $newconfig.= $this->set('DB_USERNAME',$dbx[1],$cfg);
-        $newconfig.= $this->set('DB_PASSWORD',$dbx[2],$cfg);
-        $newconfig.= $this->set('DB_DATABASE',$dbx[3],$cfg);
+        $newconfig = $this->set('DB_HOSTNAME',$dbx[0],$newconfig);
+        $newconfig = $this->set('DB_USERNAME',$dbx[1],$newconfig);
+        $newconfig = $this->set('DB_PASSWORD',$dbx[2],$newconfig);
+        $newconfig = $this->set('DB_DATABASE',$dbx[3],$newconfig);
     
         file_put_contents('.env',$newconfig);
         
