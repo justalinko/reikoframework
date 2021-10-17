@@ -428,4 +428,20 @@ class DB
         if (is_int($var)) return 'i';
         return 'b';
     }
+
+     /**
+     * Get the number of records in the result set
+     * @return int
+     */
+    /**
+     * @method count
+     * 
+     * Used to get the number of records in the result set
+     * 
+     * example:
+     * 
+     */
+    public function count() {
+        return count($this->query($this->sql)->fetchAll());
+    }
 }
