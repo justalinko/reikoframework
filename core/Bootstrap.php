@@ -12,12 +12,15 @@
  * 
  */
 
+use Reiko\Libraries\Config;
+use Reiko\Libraries\DB;
 use Reiko\Libraries\Handler;
 
 
 class Bootstrap
 {
-    public $route;
+
+    private $load;
     public function __construct()
     {
         $dotenv = Dotenv\Dotenv::createImmutable(ROOT_PATH);
@@ -31,35 +34,34 @@ class Bootstrap
         ORM::configure("mysql:host=$dbhost;dbname=$dbname");
         ORM::configure("username",$dbuser);
         ORM::configure("password",$dbpass);
-
-        $this->load_library();
-        $this->handler = new Handler;
     }
-    public function load_library()
+    public function load( $lib)
     {
-
-        spl_autoload_register(function ($class) {
-            $ex = explode("\\", $class);
-            $class = end($ex);
-            if (file_exists(LIB_PATH . $class . '.php')) {
-                require_once LIB_PATH . $class . '.php';
-            }
-        });
-    }
-    public function load_configFiles()
-    {
-        $dir = CONFIG_PATH;
-        $files = glob($dir . '/*.php');
-
-        foreach ($files as $file) {
-            require($file);
+        $exp = explode("\\" , $lib);
+        $file = end($exp);
+        if(file_exists(LIB_PATH . $file. '.php')){
+        require_once LIB_PATH. $file.'.php';
         }
     }
-    public function run()
+    private function register_lib()
     {
-        $this->handler->run();
-
-        $this->load_configFiles();
-
+        spl_autoload_register(function($class)
+        {
+            $this->load($class);
+        });
     }
+    public function run(){
+
+        $this->register_lib();
+        
+        $config = new Config;
+        $config->init();
+        $handler = new Handler;
+        $handler->run();
+    
+        require CONFIG_PATH . '/routes.php';
+
+        
+    }
+   
 }

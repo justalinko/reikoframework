@@ -23,7 +23,7 @@ $router->setNamespace('\Reiko\App');
 
 /** set router here */
 $router->get('/' ,'IndexHandler@index');
-
+$router->get('/db-test' , 'IndexHandler@get_db');
 
 
 

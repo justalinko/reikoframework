@@ -23,8 +23,7 @@ class Handler{
     public function __construct()
     {
         /** load some functions */
-        $this->use_fun('common');
-        $this->use_fun('form');
+        $this->use_fun_array(CONFIG['load_functions']);
         
         /** load latte template engine */
         $this->latte = new \Latte\Engine;
@@ -35,7 +34,9 @@ class Handler{
 
     public function run(){
     
-        $this->load_appHandler();    
+        $this->load_DBfun();
+        $this->load_appHandler();
+    
     }
     public function view($view , $params = [])
     {
@@ -56,6 +57,17 @@ class Handler{
             exit('FUNCTIONS : '.$functions . ' Doesn\'t exists !');
         }
     }
+    public function use_fun_array($arr)
+    {
+        if(is_array($arr))
+        {
+            foreach($arr as $fun)
+            {
+                $this->use_fun($fun);
+            }
+        }
+    }
+    
     public function load_appHandler(){
 
         spl_autoload_register(function($class){
@@ -63,6 +75,19 @@ class Handler{
             $class = end($ex);
             if(file_exists(APP_PATH . 'handler/' . $class . '.php')){
              require_once APP_PATH .'handler/'.$class .'.php';
+            }
+        });
+    }
+
+    public function load_DBfun()
+    {
+        spl_autoload_register(function($class)
+        {
+            $ex = explode("\\" , $class);
+            $class = end($ex);
+            if(file_exists(APP_PATH . $class.'.dbfun.php'))
+            {
+                require_once APP_PATH .$class .'.dbfun.php';
             }
         });
     }

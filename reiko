@@ -6,6 +6,7 @@ require 'dev/loadCommand.php';
 use Dev\Command\ClearCache;
 use Symfony\Component\Console\Application;
 use Dev\Command\Init;
+use Dev\Command\MakeDbfun;
 use Dev\Command\MakeHandler;
 use Dev\Command\Run;
 
@@ -55,6 +56,7 @@ Class ReikoCLI{
 $command_lists = [Run::class,
                  Init::class,
                  MakeHandler::class,
+                 MakeDbfun::class,
                  ClearCache::class];
 
 
