@@ -1,0 +1,15 @@
+vendor/*
+.env
+
+
+# Development .gitignore files
+# Remove this section if your on current project.
+app/*.dbfun.php
+app/handler/*
+app/cache/*
+app/view/*
+
+!app/handler/IndexHandler.php
+!app/view/default.latte.php
+
+# End section.

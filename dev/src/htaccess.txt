@@ -1,0 +1,7 @@
+Options All -Indexes
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^{domain}$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^{domain}$
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /public/$1 [L]

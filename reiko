@@ -1,0 +1,79 @@
+#!/usr/bin/env php
+<?php
+
+require 'vendor/autoload.php';
+require 'core/Bootstrap.php';
+require 'app/config/constant.php';
+require 'dev/loadCommand.php';
+
+use Dev\Command\ClearCache;
+use Symfony\Component\Console\Application;
+use Dev\Command\Init;
+use Dev\Command\MakeDbfun;
+use Dev\Command\MakeHandler;
+use Dev\Command\Run;
+use Dev\Command\Build;
+use Dev\Command\DBExport;
+use Dev\Command\Seeder;
+use Dev\Command\Migration;
+
+
+class ReikoCLI
+{
+
+    private $cli;
+    private $CliVer;
+    public function __construct()
+    {
+        @chdir(__DIR__);
+        $this->CliVer = '0.0.1';
+        $this->cli = new Application('REIKO CLI TOOLS', $this->CliVer);
+    }
+    public function register_cli($arr = array())
+    {
+        if (is_array($arr)) {
+            foreach ($arr as $className) {
+
+                $this->cli->add(new $className);
+            }
+        } else {
+
+            return false;
+        }
+
+        return $this->cli->run();
+    }
+    public function banner()
+    {
+        print "
+                   _ __       
+        ________  (_) /______ 
+       / ___/ _ \/ / //_/ __ \
+      / /  /  __/ / ,< / /_/ /
+     /_/   \___/_/_/|_|\____/ 
+     
+     -----------------------------------
+     | $this->CliVer - Reiko CLI Tools
+     -----------------------------------
+\n\n";
+    }
+}
+
+/** register the command */
+$command_lists = [
+    Run::class,
+    Init::class,
+    MakeHandler::class,
+    MakeDbfun::class,
+    ClearCache::class,
+    Build::class,
+    Seeder::class,
+    Migration::class,
+    DBExport::class
+];
+
+
+/** run the command */
+$cli = new ReikoCLI;
+$cli->banner();
+$cli->register_cli($command_lists);
